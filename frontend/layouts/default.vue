@@ -6,8 +6,8 @@
           <v-app-bar-title>
             <v-img src="/img/logo.ico" height="80" width="80" @click="$router.push('/')" />
           </v-app-bar-title>
-          <v-list color="black" style="color: black !important" class="d-flex align-center">
-            <v-list-item v-for="(item, index) in menus" :key="index" color="black" list>
+          <v-list color="black" style="color: black !important" class="d-flex align-center" rounded="shaped">
+            <v-list-item v-for="(item, i) in menus" :key="i" color="black">
               <v-list-item-title>
                 <NuxtLink :to="`${item.route}`">
                   <v-btn color="white">{{ item.title }}</v-btn>
