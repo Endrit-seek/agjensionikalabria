@@ -26,16 +26,15 @@ class ProductRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'cmimi' => ['nullable', 'string'],
-            // 'file' => ['required', 'array'],
-            // 'file.*' => ['required', 'file', 'mimes:jpg,bmp,png,mp3,mp4', 'max:10000000'],
-            'qyteti' => ['nullable', 'string'],
-            'lagjia' => ['nullable', 'string'],
-            'statusi' => ['nullable', 'string'],
-            'lloji' => ['nullable', 'string'],
-            'mobiluar' => ['nullable', 'boolean'],
-            'cmimi_min' => ['nullable', 'string'],
-            'cmimi_max' => ['nullable', 'string'],
+            'street_id' => ['required', 'integer'],
+            'type' => ['required', 'string'],
+            'price' => ['required', 'string'],
+            'status' => ['required', 'string'],
+            'address' => ['nullable', 'string'],
+            'space' => ['required', 'integer'],
+            'room' => ['required', 'integer'],
+            'bath' => ['required', 'integer'],
+            'furnished' => ['required', 'boolean'],
         ];
     }
 }

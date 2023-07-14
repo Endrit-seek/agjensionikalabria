@@ -18,9 +18,20 @@ class ProductResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'filterElements' => $this->filterElements,
-            $this->whenLoaded('media'),
-//            $this->whenLoaded('filterElements'),
+            'type' => $this->type,
+            'price' => $this->price,
+            'status' => $this->status,
+            'address' => $this->address,
+            'space' => $this->space,
+            'room' => $this->room,
+            'bath' => $this->bath,
+            'furnished' => $this->furnished,
+            $this->mergeWhen($this->street, [
+                'city' => $this->street->city->name,
+                'street' => $this->street->name,
+            ]),
+            'created_at' => $this->created_at->diffForHumans(),
+            'updated_at' => $this->updated_at->diffForHumans(),
         ];
     }
 }

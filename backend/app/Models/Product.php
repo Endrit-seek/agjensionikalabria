@@ -5,7 +5,7 @@ namespace App\Models;
 use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Media;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -24,17 +24,19 @@ class Product extends Model
     protected $fillable = [
         'title',
         'description',
-        'cmimi',
+        'street_id',
+        'type',
+        'price',
+        'status',
+        'address',
+        'space',
+        'room',
+        'bath',
+        'furnished',
     ];
 
-    public function media()
+    public function street(): BelongsTo
     {
-        return $this->hasMany(Media::class);
+        return $this->belongsTo(Street::class);
     }
-
-    public function filterElements()
-    {
-        return $this->hasMany(FilterElements::class);
-    }
-
 }
