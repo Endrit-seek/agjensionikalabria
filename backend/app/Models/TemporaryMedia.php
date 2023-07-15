@@ -4,18 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class City extends Model
+class TemporaryMedia extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'directory',
         'name',
     ];
-
-    public function streets(): HasMany
-    {
-        return $this->hasMany(Street::class);
-    }
 }

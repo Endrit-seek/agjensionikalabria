@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\TemporaryMedia;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ProductController extends Controller
 {
-    public function index(): ProductCollection
+    public function index(): AnonymousResourceCollection
     {
-        return new ProductCollection(Product::all());
+        return ProductResource::collection(Product::with('medias')->paginate(9));
     }
 
     public function store(ProductRequest $request): ProductResource

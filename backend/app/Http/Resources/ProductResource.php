@@ -30,6 +30,7 @@ class ProductResource extends JsonResource
                 'city' => $this->street->city->name,
                 'street' => $this->street->name,
             ]),
+            'collection' => MediaResource::collection($this->whenLoaded('medias')),
             'created_at' => $this->created_at->diffForHumans(),
             'updated_at' => $this->updated_at->diffForHumans(),
         ];

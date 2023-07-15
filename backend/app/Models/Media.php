@@ -2,25 +2,35 @@
 
 namespace App\Models;
 
+use App\Facades\MediaManager;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Media extends Model
 {
     use HasFactory;
 
+    protected $table = 'medias';
+
     protected $fillable = [
-        'mime_type',
         'name',
+        'extension',
         'size',
-        'url',
+        'product_id',
     ];
 
-    public function post()
+    protected $dispatchesEvents = [
+        'deleted' => MediaDeleted::class
+    ];
+
+    public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
 
-
-
+    public function url(): string
+    {
+        return MediaManager::getLink($this);
+    }
 }

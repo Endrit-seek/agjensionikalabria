@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class StreetResource extends JsonResource
+class MediaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,9 @@ class StreetResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            $this->mergeWhen($this->city, [
-                'city' => new CityResource($this->city),
-            ]),
+            'extension' => $this->extension,
+            'size' => $this->size,
+            'url' => $this->url(),
             'created_at' => $this->created_at->diffForHumans(),
             'updated_at' => $this->updated_at->diffForHumans(),
         ];
