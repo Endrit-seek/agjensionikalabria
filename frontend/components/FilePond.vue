@@ -8,7 +8,19 @@
       accepted-file-types="image/jpeg, image/png"
       data-allow-reorder="true"
       :files="myFiles"
-      server="/api"
+      :server="{
+        process: '/process',
+        revert: '/revert',
+        restore: '/restore',
+        load: '/load',
+        fetch: '/fetch',
+        headers: {
+          'X-CSRF-TOKEN': token
+        },
+        process:{
+          url: 'http://localhost:8000/api/medias/process',
+        }
+      }"
       @init="handleFilePondInit"
     />
   </div>
@@ -51,6 +63,7 @@ const FilePond = vueFilePond(
 
 
 const myFiles = ref([]);
+const token = useCookie('XSRF-TOKEN');
 
 function handleFilePondInit() {
   console.log("FilePond has initialized");

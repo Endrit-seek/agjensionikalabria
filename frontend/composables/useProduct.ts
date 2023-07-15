@@ -1,4 +1,4 @@
-const route = (id?: number) => `/products${id ? `/${id}` : ''}`;
+const route = (id?: number) => `/api/products${id ? `/${id}` : ''}`;
 
 const index = async () => {
   const { data } = await useApiFetch(route(), { method: 'GET' });
