@@ -2354,11 +2354,23 @@ __metadata:
     eslint-plugin-import: ^2.27.5
     eslint-plugin-nuxt: ^4.0.0
     eslint-plugin-prettier: ^4.2.1
+    filepond: ^4.30.4
+    filepond-plugin-file-encode: ^2.1.10
+    filepond-plugin-file-poster: ^2.5.1
+    filepond-plugin-file-validate-size: ^2.2.8
+    filepond-plugin-file-validate-type: ^1.2.8
+    filepond-plugin-image-crop: ^2.0.6
+    filepond-plugin-image-edit: ^1.6.3
+    filepond-plugin-image-exif-orientation: ^1.0.11
+    filepond-plugin-image-preview: ^4.6.11
+    filepond-plugin-image-resize: ^2.0.10
+    filepond-plugin-image-transform: ^3.8.7
     husky: ^8.0.3
     lint-staged: ^13.2.3
     nuxt: 3.6.2
     prettier: ^3.0.0
     sass: ^1.63.6
+    vue-filepond: ^7.0.0
     vuetify: v3.3.7
     yarn: ^1.22.19
   languageName: unknown
@@ -5027,6 +5039,103 @@ __metadata:
   version: 1.0.0
   resolution: "file-uri-to-path@npm:1.0.0"
   checksum: b648580bdd893a008c92c7ecc96c3ee57a5e7b6c4c18a9a09b44fb5d36d79146f8e442578bc0e173dc027adf3987e254ba1dfd6e3ec998b7c282873010502144
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-file-encode@npm:^2.1.10":
+  version: 2.1.10
+  resolution: "filepond-plugin-file-encode@npm:2.1.10"
+  peerDependencies:
+    filepond: ">=3.x <5.x"
+  checksum: eb51ca41c716898d636d1258611fb792687cfcc2b12dc455303d48f9dfbb47e16cc3c22d2c82132c179d5031b679ed755c39145b53e54e6f21be2849fcc89691
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-file-poster@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "filepond-plugin-file-poster@npm:2.5.1"
+  peerDependencies:
+    filepond: ">=4.x <5.x"
+  checksum: c03bac4beb9d0c396f7e69addfd50fe942b8fe6755d366875352849f0e136ffa364b51c9c8dd05ec7f8f058070729e0e13e901ec4ea6c2e04a3ce0dc02c71bd9
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-file-validate-size@npm:^2.2.8":
+  version: 2.2.8
+  resolution: "filepond-plugin-file-validate-size@npm:2.2.8"
+  peerDependencies:
+    filepond: ">=3.1.2 <5.x"
+  checksum: 5db8d18008fc0066247587f4905d733cfeaa250e0837310ebe6ebfba33c87a3dfbcb2bd4391ae30da5500c39a463fbd80ba13c7fb01160577397c4b14cdb91a9
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-file-validate-type@npm:^1.2.8":
+  version: 1.2.8
+  resolution: "filepond-plugin-file-validate-type@npm:1.2.8"
+  peerDependencies:
+    filepond: ">=1.x <5.x"
+  checksum: 5a8334323d0f9ef154f4f5788125e8b724ab3e39f23ccb35defad8d4a0f324f3097c280858f9662278576a9e9929065739c455f3bfe7bab1827bd1d9fe32d204
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-image-crop@npm:^2.0.6":
+  version: 2.0.6
+  resolution: "filepond-plugin-image-crop@npm:2.0.6"
+  peerDependencies:
+    filepond: ">=3.x <5.x"
+  checksum: da669c4744d8dd0a8774f7e84df348fe20c3ea5758716557dc936815be30e76d8f9dd2a7ab28eb6fd44bf30eaa762e19ee09819b16ae13fe06ae6fda6a813f05
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-image-edit@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "filepond-plugin-image-edit@npm:1.6.3"
+  peerDependencies:
+    filepond: ">=3.7.2 <5.x"
+  checksum: 50cbaab4dbc6efd6196e05d436aaf78aef7dc8ac3195a23af5d11153d73129550738b2737d7a30a73631c9a8360a6feafdc691810ff1010255bdb694d3ef8b3a
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-image-exif-orientation@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "filepond-plugin-image-exif-orientation@npm:1.0.11"
+  peerDependencies:
+    filepond: ">=3.x <5.x"
+  checksum: e9b8c886eac8da9a17684937aa8e702b65c3286c6feeb5a987c7eea0bd94b50e8e5804ceea3a257a4b0dfbaffd3657f9cd3e4f7be5a043e69a201f5e96f77116
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-image-preview@npm:^4.6.11":
+  version: 4.6.11
+  resolution: "filepond-plugin-image-preview@npm:4.6.11"
+  peerDependencies:
+    filepond: ">=4.x <5.x"
+  checksum: 436ee3396910efe7973bbaf4578eb2a2b19246ea4b94e6d6265361b37919c978d4ceed8fbd6fa5b8f24fe848ae5e6270cae243a4ac5f84744960fa107bb8da4e
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-image-resize@npm:^2.0.10":
+  version: 2.0.10
+  resolution: "filepond-plugin-image-resize@npm:2.0.10"
+  peerDependencies:
+    filepond: ">=3.x <5.x"
+  checksum: 8f63d0416aa5aec545be0b7c2488e7fd9eb017739ca89f06df7265721e3ad962031920357e825acdc89e95025c102449b3773f8f7f16368300cb2c7d3ccf5d3a
+  languageName: node
+  linkType: hard
+
+"filepond-plugin-image-transform@npm:^3.8.7":
+  version: 3.8.7
+  resolution: "filepond-plugin-image-transform@npm:3.8.7"
+  peerDependencies:
+    filepond: ">=3.6.0 <5.x"
+  checksum: 7fa06585b574207a1eef1801b909ee709ccbc38f713c130788a0cca36cbfb03384682e309a1364f25eee4d1a39595b6e6811aca680b63345294bb55f69ad2288
+  languageName: node
+  linkType: hard
+
+"filepond@npm:^4.30.4":
+  version: 4.30.4
+  resolution: "filepond@npm:4.30.4"
+  checksum: ec1c06a11ceda231e5589f52307fa2f34b9c67c14b22c2be7adde227159f32e9ed1aa0e0a32fbca4e08a837b6714084e9f629c097a669fc1c3076be8c5f3c295
   languageName: node
   linkType: hard
 
@@ -10733,6 +10842,16 @@ __metadata:
   peerDependencies:
     eslint: ">=6.0.0"
   checksum: 6d1476b45fcc5b456a1e5c0f33ec695cf1d392ca6113250d5e3441e6cf3b2a0ec28a9455699363641dfb7c48358f215db07856c98385a31ace9bc58196f4156e
+  languageName: node
+  linkType: hard
+
+"vue-filepond@npm:^7.0.0":
+  version: 7.0.3
+  resolution: "vue-filepond@npm:7.0.3"
+  peerDependencies:
+    filepond: ">=4.7.4 < 5.x"
+    vue: ">=3 < 4"
+  checksum: 2fdc6d6eacbe26e87dfe45e3b00a202ee882802a9af777ed36d4a81abbae3391724634621f64befed0e1598c879a28719662ed4e9f044cd41635c3113799e8bf
   languageName: node
   linkType: hard
 
