@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Facade;
  * @method static void destroy(\App\Models\Media $media)
  * @method static string url(\App\Models\Media $media)
  * @method static bool delete(string $path)
+ * @method static string process(\Illuminate\Http\UploadedFile $file)
+ * @method static bool revert(string $folder)
  * @source \App\Contracts\Media
  */
 class MediaManager extends Facade

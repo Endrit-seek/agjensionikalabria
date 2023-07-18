@@ -29,3 +29,4 @@ Route::apiResources([
 ]);
 
 Route::post('/medias/process', [MediaController::class, 'process']);
+Route::delete('/medias/revert', [MediaController::class, 'revert']);

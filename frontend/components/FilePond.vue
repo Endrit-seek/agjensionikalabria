@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <file-pond
-      name="test"
+      name="media"
       ref="pond"
       label-idle="Drop files here..."
       :allow-multiple="true"
@@ -9,17 +9,12 @@
       data-allow-reorder="true"
       :files="myFiles"
       :server="{
+        url: 'http://localhost:8000/api/medias',
         process: '/process',
         revert: '/revert',
         restore: '/restore',
         load: '/load',
         fetch: '/fetch',
-        headers: {
-          'X-CSRF-TOKEN': token
-        },
-        process:{
-          url: 'http://localhost:8000/api/medias/process',
-        }
       }"
       @init="handleFilePondInit"
     />

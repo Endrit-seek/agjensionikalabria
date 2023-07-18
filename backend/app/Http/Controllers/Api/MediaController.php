@@ -13,15 +13,7 @@ class MediaController extends Controller
      */
     public function process(Request $request)
     {
-        $tmp = uniqid() . "_" . now()->timestamp;
-        
-        return 'dd';
-
-        foreach($request->allFiles() as $file) {
-            MediaManager::process($file, $tmp);
-        }
-
-        return $tmp;
+        return MediaManager::process($request->file('media'));
     }
 
     /**
@@ -51,9 +43,9 @@ class MediaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function revert(string $id)
+    public function revert(Request $request)
     {
-        //
+        return MediaManager::revert($request->getContent());
     }
 
     /**

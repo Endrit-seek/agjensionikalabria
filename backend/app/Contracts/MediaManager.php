@@ -14,4 +14,8 @@ interface MediaManager {
     public function destroy(Media $media): bool;
 
     public function delete(string $path): bool;
+
+    public function revert(string $folder): bool;
+
+    public function process(UploadedFile $file): string;
 }

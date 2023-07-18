@@ -7,6 +7,7 @@ use App\Models\Media;
 use App\Models\Product;
 use App\Models\TemporaryMedia;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class MediaManager implements ContractMediaManager
@@ -26,17 +27,32 @@ class MediaManager implements ContractMediaManager
     {
         $media = Media::create($this->media($file, $product));
 
-        $this->storeAs($file, `{$media->name}.{$media->extension}`);
+        $this->storeAs($file, "{$media->name}.{$media->extension}");
     }
 
-    public function process(UploadedFile $file, string $folder): TemporaryMedia
+    public function process(UploadedFile $file): string
     {
-        $file->storeAs(storage_path(`app/public/collection/tmp/{$folder}/{$file->getClientOriginalName()}`));
+        $folder = $this->generateTemporaryDirectory();
 
-        return TemporaryMedia::create([
+        $file->storeAs("collection/tmp/{$folder}", $file->getClientOriginalName());
+
+        TemporaryMedia::create([
             'directory' => $folder,
             'name' => $file->getClientOriginalName(),
         ]);
+
+        return $folder;
+    }
+
+    public function revert(string $folder): bool
+    {
+        $tmp = TemporaryMedia::where('directory', $folder)->first();
+
+        if (is_dir(storage_path("app/collection/tmp/{$folder}"))) {
+            File::deleteDirectory(storage_path("app/collection/tmp/{$folder}"));
+        }
+
+        return $tmp->delete();
     }
 
     public function destroy(Media $media): bool
@@ -47,7 +63,7 @@ class MediaManager implements ContractMediaManager
     public function delete(string $media): bool
     {
         if ($this->disk && $this->directory) {
-            return Storage::disk($this->disk)->delete(`{$this->directory}/{$media}`);
+            return Storage::disk($this->disk)->delete("{$this->directory}/{$media}");
         }
 
         return false;
@@ -55,7 +71,7 @@ class MediaManager implements ContractMediaManager
 
     public function url(Media $media): string
     {
-        return url(`storage/{$this->directory}/{$media->name}.{$media->extension}`);
+        return url("storage/{$this->directory}/{$media->name}.{$media->extension}");
     }
 
     private function media(UploadedFile $file, Product $product): array
