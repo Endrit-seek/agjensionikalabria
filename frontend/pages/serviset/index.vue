@@ -104,7 +104,7 @@
         <v-col>
           <v-sheet min-height="70vh" rounded="lg" class="pt-5">
             <div class="col-md-9 col-sm-9 col-xs-12">
-              <v-row class="mx-1">
+              <v-row v-if="products.data" class="mx-1">
                 <v-col v-for="pro in products.data" :key="pro.id" cols="4">
                   <v-hover v-slot="{ isHovering, props }">
                     <v-card
@@ -114,8 +114,9 @@
                       color="grey lighten-4"
                       :class="{ 'on-hover': isHovering }"
                       width="420"
+                      :to="'/serviset/' + pro.id"
                     >
-                      <v-img :cover="true" :aspect-ratio="16 / 9" height="200px" :src="pro.src">
+                      <v-img :cover="true" :aspect-ratio="16 / 9" height="200px" :src="pro.medias[0] ? pro.medias[0].url : ''">
                         <v-expand-transition>
                           <div
                             v-if="isHovering"
@@ -123,9 +124,7 @@
                             style="height: 100%"
                           >
                             <v-btn v-if="isHovering" outlined>
-                              <NuxtLink :to="'/serviset/' + pro.id" :pro="pro">
-                                Shiqo me shume
-                              </NuxtLink>
+                              Shiqo me shume
                             </v-btn>
                           </div>
                         </v-expand-transition>
@@ -139,7 +138,7 @@
 
                         <div>
                           <v-icon icon="mdi-road-variant" />
-                          {{ pro.street }}
+                          {{ pro.address }}
                         </div>
                       </v-card-text>
                       <v-divider></v-divider>
@@ -186,175 +185,16 @@ const mobiluarRadio = ref(null);
 
 const page = 1;
 
-// const products = [
-//   {
-//     id: 1,
-//     name: 'Shitet banesa lagje',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Emshir / Kalabria',
-//     type: 'Banese',
-//     price: '140.000,00',
-//     siperfaqe: 80,
-//     dhoma: 2,
-//     banjo: 1,
-//     mobiluar: false,
-//     src: 'assets/img/products/1.jpg',
-//   },
-//   {
-//     id: 2,
-//     name: 'Apartment me qera',
-//     type: 'Banese',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Emshir / Kalabria',
-//     price: '350',
-//     siperfaqe: 76,
-//     dhoma: 1,
-//     banjo: 1,
-//     mobiluar: true,
-//     src: 'assets/img/products/2.jpg',
-//   },
-//   {
-//     id: 3,
-//     name: 'Shtepi me qera',
-//     type: 'Shtepi',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Dardania',
-//     price: '500',
-//     siperfaqe: 160,
-//     dhoma: 4,
-//     banjo: 2,
-//     mobiluar: true,
-//     src: 'assets/img/products/3.jpg',
-//   },
-//   {
-//     id: 4,
-//     name: 'Prona ne shitje',
-//     type: 'Prone',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Spitali',
-//     siperfaqe: 40,
-//     dhoma: 0,
-//     banjo: 1,
-//     price: '100.000,00',
-//     mobiluar: false,
-//     src: 'assets/img/products/4.jpg',
-//   },
-//   {
-//     id: 5,
-//     name: 'Banes ne Ulpaine',
-//     type: 'Banes',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Ulpiane',
-//     price: '80.000,00',
-//     siperfaqe: 95,
-//     dhoma: 3,
-//     banjo: 1,
-//     mobiluar: true,
-//     src: 'assets/img/products/5.jpg',
-//   },
-//   {
-//     id: 6,
-//     name: 'Banesa ne shitje',
-//     type: 'Banes',
-//     qyteti: 'Ferizaj',
-//     lagjia: 'Deshmoret e Kombit',
-//     price: '60.000,00',
-//     siperfaqe: 115,
-//     dhoma: 3,
-//     banjo: 2,
-//     mobiluar: false,
-//     src: 'assets/img/products/6.jpg',
-//   },
-//   {
-//     id: 7,
-//     name: 'Shtepi ne Dardani',
-//     type: 'Shtepi',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Dardania',
-//     price: '200.000,00',
-//     siperfaqe: 170,
-//     dhoma: 3,
-//     banjo: 2,
-//     mobiluar: false,
-//     src: 'assets/img/products/7.jpg',
-//   },
-//   {
-//     id: 8,
-//     name: 'Banes me qera ne Obiliq',
-//     type: 'Banes',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Termokos',
-//     price: '250',
-//     siperfaqe: 55,
-//     dhoma: 1,
-//     banjo: 1,
-//     mobiluar: true,
-//     src: 'assets/img/products/8.jpg',
-//   },
-//   {
-//     id: 9,
-//     name: 'Fushe kosove banes',
-//     type: 'Banes',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Enveri',
-//     price: '200',
-//     siperfaqe: 76,
-//     dhoma: 2,
-//     banjo: 1,
-//     mobiluar: true,
-//     src: 'assets/img/products/9.jpg',
-//   },
-//   {
-//     id: 10,
-//     name: 'Emshir banese me qera',
-//     type: 'Banes',
-//     qyteti: 'Ferizaj',
-//     lagjia: 'Village',
-//     price: '250',
-//     siperfaqe: 74,
-//     dhoma: 1,
-//     banjo: 1,
-//     mobiluar: false,
-//     src: 'assets/img/products/10.jpg',
-//   },
-//   {
-//     id: 11,
-//     name: 'Shitet shtepia ne emshir',
-//     type: 'Shtepi',
-//     qyteti: 'Prishtine',
-//     lagjia: 'Emshir / Kalabria',
-//     price: '140.000,00',
-//     siperfaqe: 140,
-//     dhoma: 3,
-//     banjo: 1,
-//     mobiluar: true,
-//     src: 'assets/img/products/11.jpg',
-//   },
-//   {
-//     id: 12,
-//     name: 'Emshir lokal me qera',
-//     type: 'Lokal',
-//     lagjia: 'Emshir / Kalabria',
-//     qyteti: 'Prishtine',
-//     price: '80.000,00',
-//     siperfaqe: 80,
-//     dhoma: 0,
-//     banjo: 2,
-//     mobiluar: false,
-//     src: 'assets/img/products/12.jpg',
-//   },
-// ];
-
 const { index } = useProduct()
 const products = await index()
-console.log(products.value.data)
+console.log(products);
 
 const statuset = ['Per Qera', 'Per Shitje'];
 const llojet = ['Banese', 'Shtepi', 'Zyre', 'Toke', 'Shtepi'];
 // const { data: qytetet } = await useFetch(() => `/api/qytetet`);
 // const { data: lagjet } = await useFetch(() => `/api/lagjet`);
 // const { data: posts } = await useFetch(`http://localhost:8000/api/posts`);
-// console.log(posts);
+
 const numberRule = [
   v =>
     (v && v >= valueRange.value[0]) ||

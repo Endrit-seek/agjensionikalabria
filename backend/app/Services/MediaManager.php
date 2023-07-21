@@ -71,7 +71,7 @@ class MediaManager implements ContractMediaManager
 
     public function url(Media $media): string
     {
-        return url("storage/{$this->directory}/{$media->name}.{$media->extension}");
+        return url("storage/images/{$media->product_id}/{$media->name}");
     }
 
     private function media(UploadedFile $file, Product $product): array

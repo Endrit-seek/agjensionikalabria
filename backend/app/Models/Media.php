@@ -31,6 +31,6 @@ class Media extends Model
 
     public function url(): string
     {
-        return MediaManager::getLink($this);
+        return MediaManager::url($this);
     }
 }

@@ -14,13 +14,13 @@ export const useAuthStore = defineStore('auth', {
     async fetchUser() {
       await useApiFetch("/sanctum/csrf-cookie");
 
-      if (process.client && localStorage.getItem('token')) {
-          const { data }: any = await useApiFetch("/api/user", {
-            method: "GET"
-          });
+      // if (process.client && localStorage.getItem('token')) {
+      //     const { data }: any = await useApiFetch("/api/user", {
+      //       method: "GET"
+      //     });
           
-          this.user = data.value.user as User;
-        }
+      //     this.user = data.value.user as User;
+      //   }
     },
 
     async login(credentials: Credentials) {

@@ -1381,7 +1381,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:^3.2.3, @nuxt/kit@npm:^3.5.0, @nuxt/kit@npm:^3.6.1":
+"@nuxt/kit@npm:^3.2.3, @nuxt/kit@npm:^3.5.0, @nuxt/kit@npm:^3.6.1, @nuxt/kit@npm:^3.6.3":
   version: 3.6.3
   resolution: "@nuxt/kit@npm:3.6.3"
   dependencies:
@@ -2095,14 +2095,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vee-validate/nuxt@npm:^4.10.6":
-  version: 4.10.6
-  resolution: "@vee-validate/nuxt@npm:4.10.6"
+"@vee-validate/nuxt@npm:^4.10.7":
+  version: 4.10.7
+  resolution: "@vee-validate/nuxt@npm:4.10.7"
   dependencies:
-    "@nuxt/kit": ^3.6.1
+    "@nuxt/kit": ^3.6.3
     local-pkg: ^0.4.3
-    vee-validate: ^4.10.6
-  checksum: 97b1e4c86b14848c0c594c310759ee8591f1e2c5d1aaa7e994f2e052edfc30584b6d2fa3f45fb9d6273654f9561ef66962ce28c42a0de3da73a519193b3eabf2
+    vee-validate: ^4.10.7
+  checksum: 70568a7e4c999242dc78c6b46b402bfd998d8dbf4667855c2a7bd37bae82ea58b4ad0763f6232488fbeecc48e4d48a94ad3d3f5e41ab4ce9f2cddee8396840b1
   languageName: node
   linkType: hard
 
@@ -2412,7 +2412,7 @@ __metadata:
     "@pinia/nuxt": ^0.4.11
     "@typescript-eslint/eslint-plugin": ^5.61.0
     "@typescript-eslint/parser": ^5.61.0
-    "@vee-validate/nuxt": ^4.10.6
+    "@vee-validate/nuxt": ^4.10.7
     babel-plugin-module-resolver: ^5.0.0
     eslint: ^8.44.0
     eslint-config-airbnb-base: ^15.0.0
@@ -10325,10 +10325,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^3.12.0":
-  version: 3.13.0
-  resolution: "type-fest@npm:3.13.0"
-  checksum: f7be142ae1ad0582eafd52d085350799c8cd918c15455896a06c82c147b61f8cea58892bedf1348943478e37740562219375b3b59fd855db99cd2b2766510f98
+"type-fest@npm:^3.13.0":
+  version: 3.13.1
+  resolution: "type-fest@npm:3.13.1"
+  checksum: c06b0901d54391dc46de3802375f5579868949d71f93b425ce564e19a428a0d411ae8d8cb0e300d330071d86152c3ea86e744c3f2860a42a79585b6ec2fdae8e
   languageName: node
   linkType: hard
 
@@ -10688,15 +10688,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vee-validate@npm:^4.10.6":
-  version: 4.10.6
-  resolution: "vee-validate@npm:4.10.6"
+"vee-validate@npm:^4.10.7":
+  version: 4.10.7
+  resolution: "vee-validate@npm:4.10.7"
   dependencies:
     "@vue/devtools-api": ^6.5.0
-    type-fest: ^3.12.0
+    type-fest: ^3.13.0
   peerDependencies:
     vue: ^3.3.4
-  checksum: 309c6766b83cf663493767a5e992c4cfb7533881f4eee097a1c4538a7e47be05a919d59f1fbb942bb49b8a8d4d0c92c32a7db799ff81ed2aee260d38467798dc
+  checksum: 2df59acb51bc7582c930f0047685896062689de9663cccea964acf2d8c14418eeb9ad50f2a482b0acfeab44cc2d2b018945a79d239ec93c0666972cf1b023023
   languageName: node
   linkType: hard
 

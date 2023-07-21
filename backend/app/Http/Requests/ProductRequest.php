@@ -26,11 +26,12 @@ class ProductRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'description' => ['nullable', 'string'],
-            'street_id' => ['required', 'integer'],
             'type' => ['required', 'string'],
             'price' => ['required', 'string'],
             'status' => ['required', 'string'],
+            'city_id' => ['required', 'integer'],
             'address' => ['nullable', 'string'],
+            'street' => ['required', 'string'],
             'space' => ['required', 'integer'],
             'room' => ['required', 'integer'],
             'bath' => ['required', 'integer'],

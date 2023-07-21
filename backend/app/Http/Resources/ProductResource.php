@@ -26,11 +26,8 @@ class ProductResource extends JsonResource
             'room' => $this->room,
             'bath' => $this->bath,
             'furnished' => $this->furnished,
-            $this->mergeWhen($this->street, [
-                'city' => $this->street->city->name,
-                'street' => $this->street->name,
-            ]),
-            'collection' => MediaResource::collection($this->whenLoaded('medias')),
+            'city_id' => $this->city_id,
+            'medias' => MediaResource::collection($this->whenLoaded('medias')),
             'created_at' => $this->created_at->diffForHumans(),
             'updated_at' => $this->updated_at->diffForHumans(),
         ];

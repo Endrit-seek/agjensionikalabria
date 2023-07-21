@@ -19,13 +19,14 @@ return new class extends Migration
             $table->string('type');
             $table->string('status');
             $table->string('address')->nullable();
+            $table->string('street');
             $table->integer('space');
             $table->integer('room');
             $table->integer('bath');
             $table->boolean('furnished');
+            $table->bigInteger('city_id');
+            $table->foreign('city_id')->on('cities')->references('id')->nullOnDelete();
             $table->timestamps();
-            $table->bigInteger('street_id');
-            $table->foreign('street_id')->on('streets')->references('id')->nullOnDelete();
         });
     }
 

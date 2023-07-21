@@ -59,12 +59,5 @@ class CitySeeder extends Seeder
         foreach($this->cities as $city) {
             City::create(['name' => $city]);
         }
-
-        if ($city = City::first()) {
-            Street::create([
-                "name" => "Emshir/Kalabri",
-                "city_id" => $city->id
-            ]);
-        }
     }
 }

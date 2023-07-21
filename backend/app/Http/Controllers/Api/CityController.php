@@ -12,7 +12,7 @@ class CityController extends Controller
 {
     public function index(): AnonymousResourceCollection
     {
-        return CityResource::collection(City::with('streets')->get());
+        return CityResource::collection(City::all());
     }
 
     /**

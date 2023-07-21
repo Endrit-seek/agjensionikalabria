@@ -3,25 +3,38 @@
     <file-pond
       name="media"
       ref="pond"
-      label-idle="Drop files here..."
+      label-idle="Kliko per te shtuar fotografi"
       :allow-multiple="true"
+      :disabled="disabled"
       accepted-file-types="image/jpeg, image/png"
       data-allow-reorder="true"
       :files="myFiles"
       :server="{
         url: 'http://localhost:8000/api/medias',
-        process: '/process',
-        revert: '/revert',
+        process: {
+          url: '/process',
+          onload: handleFilePondLoad,
+        },
+        revert: async (uniqueFileId: string, load: any, error: any) => {
+          handleFilePondRevert(uniqueFileId);
+          load();
+        },
         restore: '/restore',
         load: '/load',
         fetch: '/fetch',
+        headers: {
+          'X-CSRF-TOKEN': token
+        }
       }"
-      @init="handleFilePondInit"
+      :onupdatefiles="(files: any) => {
+        myFiles = files;
+        console.log(files);
+      }"
     />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // Import Vue FilePond
 import vueFilePond from "vue-filepond";
 
@@ -56,17 +69,34 @@ const FilePond = vueFilePond(
   FilePondPluginFileEncode
 );
 
+defineProps({
+  disabled: {
+    type: Boolean,
+    default: true,
+  },
+});
 
-const myFiles = ref([]);
+const emit = defineEmits(['files']);
+
+const myFiles = ref<Array<string>>([]);
 const token = useCookie('XSRF-TOKEN');
 
-function handleFilePondInit() {
-  console.log("FilePond has initialized");
+function handleFilePondLoad(response: string) {
+  const noSpecialChars = response.replace(/[^\w.-]/g, '');
+  myFiles.value.push(noSpecialChars);
+  emit('files', myFiles);
+  return response;
 }
 
-function handleLoad(event) {
-  console.log("load", event.detail);
-};
+async function handleFilePondRevert(id: string) {
+  const noSpecialChars = id.replace(/[^\w.-]/g, '');
+  await useApiFetch('/api/medias/revert', {
+    method: 'DELETE',
+    body: [noSpecialChars]
+  })
+  myFiles.value.splice(myFiles.value.indexOf(noSpecialChars), 1);
+  emit('files', myFiles);
+}
 </script>
 
 <style>

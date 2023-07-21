@@ -15,7 +15,8 @@ class Product extends Model
     protected $fillable = [
         'title',
         'description',
-        'street_id',
+        'street',
+        'city_id',
         'type',
         'price',
         'status',
@@ -26,10 +27,9 @@ class Product extends Model
         'furnished',
     ];
 
-    public function street(): BelongsTo
-    {
-        return $this->belongsTo(Street::class);
-    }
+    protected $with = [
+        'medias'
+    ];
 
     public function medias(): HasMany
     {

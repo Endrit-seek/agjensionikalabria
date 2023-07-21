@@ -7,9 +7,9 @@ const index = async () => {
 }
 
 const show = async (id: number) => {
-  const { data } = await useApiFetch(route(id), { method: 'GET' });
-
-  return data;
+  const { data } = await useApiFetch<ProductResponse>(route(id), { method: 'GET' });
+  
+  return data.value?.data;
 }
 
 const store = async (body: any) => {
@@ -30,6 +30,11 @@ const destroy = async (id: number) => {
   return data;
 }
 
+
 export const useProduct = () => ({
   index, show, store, update, destroy
 })
+
+interface ProductResponse {
+  data: Product
+}

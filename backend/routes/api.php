@@ -25,7 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResources([
     'products' => ProductController::class,
     'cities'=> CityController::class,
-    'streets'=> StreetController::class,
 ]);
 
 Route::post('/medias/process', [MediaController::class, 'process']);

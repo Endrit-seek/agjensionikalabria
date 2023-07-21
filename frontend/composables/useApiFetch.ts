@@ -29,7 +29,7 @@ export function useApiFetch<T> (path: string, options: UseFetchOptions<T> = {}) 
       ...options?.headers
     },
     onRequest() {
-      // useErrorStore().$reset();
+      useErrorStore().$reset();
     },
     onResponse({ response }) {
       // const message = useMessageStore()
@@ -41,14 +41,14 @@ export function useApiFetch<T> (path: string, options: UseFetchOptions<T> = {}) 
       // }
     },
     onResponseError({ response }) {
-    //   const errors = useErrorStore()
-    //   errors.$state.errors = response._data.errors;
-    //   errors.$state.message = response._data.message;
-    //   errors.$state.status = response.status;
-    //   errors.$state.statusText = response.statusText;
-    //   setTimeout(() => {
-    //     errors.$reset()
-    //   }, errors.$state.timeout)
+      const errors = useErrorStore()
+      errors.$state.errors = response._data.errors;
+      errors.$state.message = response._data.message;
+      errors.$state.status = response.status;
+      errors.$state.statusText = response.statusText;
+      setTimeout(() => {
+        errors.$reset()
+      }, errors.$state.timeout)
     }
   });
 }
