@@ -9,7 +9,7 @@
           <v-list color="black" style="color: black !important" class="d-flex align-center" rounded="shaped">
             <v-list-item v-for="(item, i) in menus" :key="i" color="black">
               <v-list-item-title>
-                <NuxtLink :to="`${item.route}`">
+                <NuxtLink :to="item.route">
                   <v-btn color="white">{{ item.title }}</v-btn>
                 </NuxtLink>
               </v-list-item-title>

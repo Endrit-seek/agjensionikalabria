@@ -40,10 +40,11 @@
                 />
               </v-col>
               <v-col  cols="12" md="4">
-                <v-text-field
-                  v-model="type.value.value"
+                <v-autocomplete
+                  v-model="(type.value.value as string)"
                   :error-messages="type.errorMessage.value || errors.$state.errors.type"
                   id="type"
+                  :items="llojet"
                   name="type"
                   density="compact"
                   placeholder="Lloji i produktit"
@@ -53,11 +54,12 @@
                 />
               </v-col>
               <v-col  cols="12" md="4">
-                <v-text-field
-                  v-model="status.value.value"
+                <v-autocomplete
+                  v-model="(status.value.value as string)"
                   :error-messages="status.errorMessage.value || errors.$state.errors.status"
                   id="status"
                   name="status"
+                  :items="statuset"
                   density="compact"
                   placeholder="Statusi i produktit"
                   label="Statusi"
@@ -74,10 +76,12 @@
                   density="compact"
                   placeholder="Qmimi i Produktit"
                   label="Qmimi"
-                  prepend-icon="mdi-cash"
+                  prepend-icon="mdi-currency-eur"
                   variant="outlined"
                 />
               </v-col>
+            </v-row>
+            <v-row>
               <v-col  cols="12" md="4">
                 <v-autocomplete
                   v-if="cities"
@@ -123,6 +127,8 @@
                   variant="outlined"
                 />
               </v-col>
+            </v-row>
+            <v-row>
               <v-col  cols="12" md="4">
                 <v-text-field
                   v-model="space.value.value"
@@ -165,6 +171,8 @@
                   variant="outlined"
                 />
               </v-col>
+            </v-row>
+            <v-row>
               <v-col  cols="12" md="4">
                 <v-radio-group  v-model="furnished.value.value"
                   :error-messages="furnished.errorMessage.value || errors.$state.errors.furnished"
@@ -179,6 +187,8 @@
                   <v-radio label="Jo" value="0"></v-radio>
                 </v-radio-group>
               </v-col>
+            </v-row>
+            <v-row>
               <v-container fill-height>
                 <v-row justify="center">
                   <v-col cols="12" sm="4">
@@ -203,12 +213,10 @@
   const { store } = useProduct();
   const { index } = useCity();
   const cities = await index();
-  console.log(cities);
-  
-  const errors = useErrorStore();
+  const statuset = ['Per Qera', 'Per Shitje'];
+  const llojet = ['Banese', 'Shtepi', 'Zyre', 'Toke', 'Shtepi'];
 
-  const height = ref<number>(350);
-  const width = ref<number>(400);
+  const errors = useErrorStore();
 
   const { handleSubmit } = useForm({
     validationSchema: {
@@ -317,6 +325,5 @@
 
   function updateFiles(files: any) {
     images.value = files.value;
-    console.log('files on parent', images.value);
   }
 </script>

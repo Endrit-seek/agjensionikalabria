@@ -1,15 +1,20 @@
 const route = (id?: number) => `/api/products${id ? `/${id}` : ''}`;
 
 const index = async () => {
-  const { data } = await useApiFetch(route(), { method: 'GET' });
-
-  return data;
+  const { data } = await useApiFetch<IndexProductResponse>(route(), { method: 'GET' });
+  if (data.value && data.value.data) {
+    return data.value.data;
+  }
+  return [] as Product[];
 }
 
 const show = async (id: number) => {
   const { data } = await useApiFetch<ProductResponse>(route(id), { method: 'GET' });
   
-  return data.value?.data;
+  if (data.value && data.value.data) {
+    return data.value.data;
+  }
+  return [] as Product[];
 }
 
 const store = async (body: any) => {
@@ -37,4 +42,8 @@ export const useProduct = () => ({
 
 interface ProductResponse {
   data: Product
+}
+
+interface IndexProductResponse {
+  data: Product[]
 }

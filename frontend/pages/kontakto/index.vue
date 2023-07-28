@@ -3,38 +3,38 @@
     <v-sheet>
       <v-img height="300" cover src="/img/building4.jpg"></v-img>
     </v-sheet>
-    <v-text class="d-flex text-h3 mt-3 text-pink fill-height align-center justify-center">
+    <p class="d-flex text-h3 mt-3 text-pink fill-height align-center justify-center">
       <strong>Rreth nesh</strong>
-    </v-text>
-    <v-text class="d-flex mt-4 ml-12 fill-height text-h4">
+    </p>
+    <p class="d-flex mt-4 ml-12 fill-height text-h4">
       Agjensioni i patundshmërisë - KALABRIA
-    </v-text>
-    <v-text class="d-flex mt-4 ml-12 fill-height">
+    </p>
+    <p class="d-flex mt-4 ml-12 fill-height">
       <strong>
         Agjensioni i patundshmërisë Kalabria ofron shërbimin e ndërmjetësimit në shit-blerje dhe
         qera-dhënie të patundshmërive. Shitblerje / Qeradhënie / Qeramarrje Banesa / Shtëpi / Lokale
         / Troje
         <br />
       </strong>
-    </v-text>
-    <v-text class="d-flex mt-4 ml-12 fill-height text-h4">Detajet e kontaktit</v-text>
+    </p>
+    <p class="d-flex mt-4 ml-12 fill-height text-h4">Detajet e kontaktit</p>
     <div>
-      <v-text class="d-flex mt-4 ml-12 fill-height">
+      <p class="d-flex mt-4 ml-12 fill-height">
         <v-icon class="mr-2" icon="mdi-phone"></v-icon>
         +383 44 442 969
-      </v-text>
-      <v-text class="d-flex mt-4 ml-12 fill-height">
+      </p>
+      <p class="d-flex mt-4 ml-12 fill-height">
         <v-icon class="mr-2" icon="mdi-whatsapp"></v-icon>
         +383 49 886 699
-      </v-text>
-      <v-text class="d-flex mt-4 ml-12 fill-height">
+      </p>
+      <p class="d-flex mt-4 ml-12 fill-height">
         <v-icon class="mr-2" icon="mdi-email"></v-icon>
         agjencionikalabria@gmail.com
-      </v-text>
-      <v-text class="d-flex mt-4 ml-12 fill-height">
+      </p>
+      <p class="d-flex mt-4 ml-12 fill-height">
         <v-icon class="mr-2" icon="mdi-map-marker"></v-icon>
         Lagjja Kalabria ( Emshir ) , Kullat e Arabëve, Kulla nr.3
-      </v-text>
+      </p>
       <div class="d-flex mt-2 mr-4 ml-6 fill-height text-white">
         <v-btn
           href="https://www.facebook.com/agjenciagjonikalabria"

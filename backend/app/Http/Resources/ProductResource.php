@@ -23,6 +23,7 @@ class ProductResource extends JsonResource
             'status' => $this->status,
             'address' => $this->address,
             'space' => $this->space,
+            'street' => $this->street,
             'room' => $this->room,
             'bath' => $this->bath,
             'furnished' => $this->furnished,

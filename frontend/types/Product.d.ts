@@ -10,7 +10,7 @@ interface Product {
   room: number;
   bath: number;
   furnished: number;
-  city: string;
+  city_id: number;
   street: string;
   medias: Media[];
   created_at: string;

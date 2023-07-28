@@ -26,51 +26,51 @@
 </template>
 
 <script setup>
-const slides = [
-  {
-    src: '/img/C1.jpg',
-  },
-  {
-    src: '/img/C2.jpg',
-  },
-  {
-    src: '/img/C3.jpg',
-  },
-  {
-    src: '/img/C4.jpg',
-  },
-  {
-    src: '/img/C5.jpg',
-  },
-];
+  const slides = [
+    {
+      src: '/img/C1.jpg',
+    },
+    {
+      src: '/img/C2.jpg',
+    },
+    {
+      src: '/img/C3.jpg',
+    },
+    {
+      src: '/img/C4.jpg',
+    },
+    {
+      src: '/img/C5.jpg',
+    },
+  ];
 
-const items = ref([
-  {
-    label: 'Banese',
-    image: '/img/P1.jpg',
-    description: 'Banese ne shitje',
-  },
-  {
-    label: 'Shpi',
-    image: '/img/P2.jpg',
-    description: 'Shpi ne shitje',
-  },
-  {
-    label: 'Lokal',
-    image: '/img/P3.jpg',
-    description: 'Lokal ne shitje',
-  },
-  {
-    label: 'Toke',
-    image: '/img/P4.jpg',
-    description: 'Toke ne shitje',
-  },
-  {
-    label: 'Prone',
-    image: '/img/P5.jpg',
-    description: 'Prone ne shitje',
-  },
-]);
+  const items = ref([
+    {
+      label: 'Banese',
+      image: '/img/P1.jpg',
+      description: 'Banese ne shitje',
+    },
+    {
+      label: 'Shpi',
+      image: '/img/P2.jpg',
+      description: 'Shpi ne shitje',
+    },
+    {
+      label: 'Lokal',
+      image: '/img/P3.jpg',
+      description: 'Lokal ne shitje',
+    },
+    {
+      label: 'Toke',
+      image: '/img/P4.jpg',
+      description: 'Toke ne shitje',
+    },
+    {
+      label: 'Prone',
+      image: '/img/P5.jpg',
+      description: 'Prone ne shitje',
+    },
+  ]);
 </script>
 
 <style>

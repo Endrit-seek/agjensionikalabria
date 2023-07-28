@@ -28,7 +28,6 @@
       }"
       :onupdatefiles="(files: any) => {
         myFiles = files;
-        console.log(files);
       }"
     />
   </div>
