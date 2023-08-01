@@ -1,6 +1,8 @@
 export const useProductStore = defineStore('product', {
   state: () => ({
-    products: [] as Product[]
+    products: [] as Product[],
+    meta: {} as Meta,
+    page: 1
   }),
 
   getters: {
@@ -8,9 +10,10 @@ export const useProductStore = defineStore('product', {
   },
 
   actions: {
-    async fetchProducts() {
+    async fetchProducts(page?: number) {
       const { index } = useProduct()
-      this.products = await index()
+      this.products = (await index(page)).data
+      this.meta = (await index(page)).meta
     }
   },
 

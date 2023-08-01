@@ -20,8 +20,8 @@
                   variant="outlined"  
                   class="mb-2 pt-2"
                   label="Titulli"
-                  placeholder="Titulli i produktit / Kodi i identifikimit"
-                  prepend-icon="mdi-lock"
+                  placeholder="Titulli i produktit"
+                  prepend-icon="mdi-format-title"
                 />
               </v-list-item>
 
@@ -125,6 +125,7 @@
                   <v-text-field
                     v-model="filteredSpace"
                     type="number"
+                    class="pt-3"
                     placeholder="Sa ka hapesire produkti"
                     prepend-icon="mdi-texture-box"
                     density="compact"
@@ -175,11 +176,25 @@
         <v-col>
           <v-sheet min-height="70vh" rounded="lg" class="pt-5">
             <div v-if="filteredProducts && filteredProducts.length > 0">
-              
+              <div>
+                Sorto Produktet permes
+                <v-btn
+                  :append-icon="sortPrice ? 'fa:fas fa-arrow-down-9-1 fa-sm' : 'fa:fas fa-arrow-down-1-9 fa-sm'"
+                  @click="sortByPrice()"
+                >
+                  Qmimit
+                </v-btn>
+                <v-btn
+                  :append-icon="sortDate ? 'mdi-sort-calendar-ascending' : 'mdi-sort-calendar-descending'"
+                  @click="sortByDate()"
+                >
+                  Dates se krijuar
+                </v-btn>
+              </div>
               <ServiceProducts :products="filteredProducts" :cities="cities"/>
 
               <div class="text-center mt-12">
-                <v-pagination v-model="page" :length="6"></v-pagination>
+                <v-pagination v-model="productStore.page" :length="productStore.meta.last_page" @update:model-value="updatePage"></v-pagination>
               </div>
             </div>
 
@@ -194,10 +209,15 @@
 </template>
 
 <script setup lang="ts">
-  const filteredTitle = ref<string>('');
+  import moment from 'moment';
+
+  const productStore = useProductStore()
+  const { cities } = useCityStore()
+
+  const filteredTitle = ref<string>();
   const filteredCity = ref<{value: number; title: string}>();
-  const filteredAddress = ref<string>('');
-  const filteredStreet = ref<string>('');
+  const filteredAddress = ref<string>();
+  const filteredStreet = ref<string>();
   const filteredType = ref<string>();
   const filteredStatus = ref<string>();
   const filteredMinPrice = ref<number>();
@@ -207,35 +227,40 @@
   const filteredBath = ref<string>();
   const filteredFurnished = ref<string>();
   const tempFurnished = ref<string>();
+
+  // true: Qmimi me I larte tek me I ulet, Data me e hershme tek me e vonshme 
+  // false: Qmimi me I ulet tek me I larte, Data me e vonshme tek me e hershme
+  const sortPrice = ref<boolean | undefined>(undefined)
+  const sortDate = ref<boolean | undefined>(undefined)
   
   const statuset = ['Me Qera', 'Per Shitje'];
   const llojet = ['Banese', 'Shtepi', 'Zyre', 'Toke', 'Shtepi'];
   const valueRange = ref([0, 1000000]);
 
-  const page = 1;
-
-  const { products } = useProductStore()
-  const { cities } = useCityStore()
-
   const filteredProducts = computed(() => {
-    return products
-      .filter((item: Product) => {
-        return filteredTitle.value ? item.title.toLowerCase().includes(filteredTitle.value.toLowerCase()) : products
+    return productStore.products
+      .sort((fp1: Product, fp2: Product) => {
+        const fp1Date = moment(fp1.created_at).format("DD-MM-YYYY HH:mm:ss");
+        const fp2Date = moment(fp2.created_at).format("DD-MM-YYYY HH:mm:ss");
+        return (fp1Date < fp2Date) ? 1 : (fp1Date > fp2Date) ? -1 : 0
       })
       .filter((item: Product) => {
-        return filteredCity.value ? item.city_id === filteredCity.value.value : products
+        return filteredTitle.value ? item.title.toLowerCase().includes(filteredTitle.value.toLowerCase()) : productStore.products
       })
       .filter((item: Product) => {
-        return filteredAddress.value ? item.address.toLowerCase().includes(filteredAddress.value.toLowerCase()) : products
+        return filteredCity.value ? item.city_id === filteredCity.value.value : productStore.products
       })
       .filter((item: Product) => {
-        return filteredStreet.value ? item.street.toLowerCase().includes(filteredStreet.value.toLowerCase()) : products
+        return filteredAddress.value ? item.address.toLowerCase().includes(filteredAddress.value.toLowerCase()) : productStore.products
       })
       .filter((item: Product) => {
-        return filteredType.value ? item.type.toLocaleLowerCase().match(filteredType.value.toLowerCase())  : products
+        return filteredStreet.value ? item.street.toLowerCase().includes(filteredStreet.value.toLowerCase()) : productStore.products
       })
       .filter((item: Product) => {
-        return filteredStatus.value ? item.status.toLowerCase().match(filteredStatus.value.toLowerCase()) : products
+        return filteredType.value ? item.type.toLocaleLowerCase().match(filteredType.value.toLowerCase())  : productStore.products
+      })
+      .filter((item: Product) => {
+        return filteredStatus.value ? item.status.toLowerCase().match(filteredStatus.value.toLowerCase()) : productStore.products
       })
       .filter((item: Product) => {
         if (filteredMinPrice.value && !filteredMaxPrice.value) {
@@ -245,19 +270,31 @@
         } else if (filteredMinPrice.value && filteredMaxPrice.value) {
           return item.price >= filteredMinPrice.value && item.price <= filteredMaxPrice.value;
         }
-        return products;
+        return productStore.products;
       })
       .filter((item: Product) => {
-        return filteredSpace.value ? item.space.toString().includes(filteredSpace.value) : products
+        return filteredSpace.value ? item.space.toString().includes(filteredSpace.value) : productStore.products
       })
       .filter((item: Product) => {
-        return filteredRoom.value ? item.room.toString().includes(filteredRoom.value) : products
+        return filteredRoom.value ? item.room.toString().includes(filteredRoom.value) : productStore.products
       })
       .filter((item: Product) => {
-        return filteredBath.value ? item.bath.toString().includes(filteredBath.value) : products
+        return filteredBath.value ? item.bath.toString().includes(filteredBath.value) : productStore.products
       })
       .filter((item: Product) => {
-        return filteredFurnished.value ? item.furnished.toString().match(filteredFurnished.value) : products
+        return filteredFurnished.value ? item.furnished.toString().match(filteredFurnished.value) : productStore.products
+      })
+      .sort((fp1: Product, fp2: Product) => {
+        if (sortPrice.value) return (fp1.price < fp2.price) ? 1 : (fp1.price > fp2.price) ? -1 : 0
+        if (!sortPrice.value) return (fp1.price > fp2.price) ? 1 : (fp1.price < fp2.price) ? -1 : 0
+        return 0;
+      })
+      .sort((fp1: Product, fp2: Product) => {
+        const fp1Date = moment(fp1.created_at).format("DD-MM-YYYY HH:mm:ss");
+        const fp2Date = moment(fp2.created_at).format("DD-MM-YYYY HH:mm:ss");
+        if (sortDate.value) return (fp1Date < fp2Date) ? 1 : (fp1Date > fp2Date) ? -1 : 0
+        if (!sortDate.value) return (fp1Date > fp2Date) ? 1 : (fp1Date < fp2Date) ? -1 : 0
+        return 0
       })
   })
 
@@ -280,6 +317,21 @@
     filteredBath.value = '';
     filteredFurnished.value = '';
     tempFurnished.value = '';
+  }
+
+  function sortByPrice() {
+    if (sortPrice.value === undefined) sortPrice.value = true;
+    else sortPrice.value = !sortPrice.value
+  }
+
+  function sortByDate() {
+    if (sortDate.value === undefined) sortDate.value = true;
+    else sortDate.value = !sortDate.value;
+  }
+
+  function updatePage(index: number) {
+    productStore.page = index;
+    productStore.fetchProducts(index);
   }
 </script>
 
@@ -323,3 +375,4 @@
     -moz-appearance: textfield;
   }
 </style>
+ 

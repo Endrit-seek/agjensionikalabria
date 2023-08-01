@@ -993,6 +993,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/fontawesome-free@npm:^6.4.0":
+  version: 6.4.0
+  resolution: "@fortawesome/fontawesome-free@npm:6.4.0"
+  checksum: 0197cd7df96de375862fea561d69427deebb918cadc26074cc8d490180d536e7e58853d138ca74d081b46b2cbdec2783d01cdaccb8bd723d6ef6b4cc8455b84b
+  languageName: node
+  linkType: hard
+
 "@hapi/hoek@npm:^9.0.0":
   version: 9.3.0
   resolution: "@hapi/hoek@npm:9.3.0"
@@ -2405,6 +2412,7 @@ __metadata:
     "@babel/eslint-parser": ^7.22.7
     "@commitlint/cli": ^17.6.6
     "@commitlint/config-conventional": ^17.6.6
+    "@fortawesome/fontawesome-free": ^6.4.0
     "@mdi/font": ^7.2.96
     "@nuxt/devtools": ^0.6.7
     "@nuxtjs/eslint-config-typescript": ^12.0.0
@@ -2435,6 +2443,7 @@ __metadata:
     filepond-plugin-image-transform: ^3.8.7
     husky: ^8.0.3
     lint-staged: ^13.2.3
+    moment: ^2.29.4
     nuxt: 3.6.2
     pinia: ^2.1.4
     pinia-plugin-persistedstate: ^3.1.0
@@ -7430,6 +7439,13 @@ __metadata:
     pkg-types: ^1.0.3
     ufo: ^1.1.2
   checksum: ebf2e2b5cfb4c6e45e8d0bbe82710952247023f12626cb0997c41b1bb6e57c8b6fc113aa709228ad511382ab0b4eebaab759806be0578093b3635d3e940bd63b
+  languageName: node
+  linkType: hard
+
+"moment@npm:^2.29.4":
+  version: 2.29.4
+  resolution: "moment@npm:2.29.4"
+  checksum: 0ec3f9c2bcba38dc2451b1daed5daded747f17610b92427bebe1d08d48d8b7bdd8d9197500b072d14e326dd0ccf3e326b9e3d07c5895d3d49e39b6803b76e80e
   languageName: node
   linkType: hard
 

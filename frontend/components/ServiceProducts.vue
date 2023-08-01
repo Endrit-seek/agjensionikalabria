@@ -36,7 +36,7 @@
 
               <v-card-text>
                 <v-row>
-                  <v-col>
+                  <v-col cols="9">
                     <div>
                       <v-icon icon="mdi-city" />
                       Qyteti: {{ cities.find((city) => city.id === pro.city_id)?.name }}
@@ -51,10 +51,14 @@
                       <v-icon icon="mdi-road-variant" />
                       Rruga: {{ pro.street }}
                     </div>
+                    <div>
+                      <v-icon icon="mdi-calendar-range" /> 
+                      Data e Krijuar: {{ moment(pro.created_at).format("DD-MM-YYYY HH:mm:ss") }}
+                    </div>
                   </v-col>
-                  <v-col justify="end" align="end">
+                  <v-col justify="end" align="end" cols="3">
                     <v-chip color="black">
-                      Qmimi: {{ pro.price }} &#8364;
+                      {{ pro.price }} &#8364;
                     </v-chip>
                   </v-col>
                 </v-row>
@@ -93,6 +97,7 @@
 </template>
 
 <script setup lang="ts">
+import moment from 'moment'
 defineProps<{
   products: Product[]
   cities: City[]

@@ -1,11 +1,11 @@
-const route = (id?: number) => `/api/products${id ? `/${id}` : ''}`;
+const route = (id?: number, page?: number) => `/api/products${id ? `/${id}` : `${page ? `?page=${page}` : ''}`}`;
 
-const index = async () => {
-  const { data } = await useApiFetch<IndexProductResponse>(route(), { method: 'GET' });
-  if (data.value && data.value.data) {
-    return data.value.data;
+const index = async (page?: number) => {
+  const { data } = await useApiFetch<IndexProductResponse>(route(undefined, page), { method: 'GET' });
+  if (data.value) {
+    return data.value;
   }
-  return [] as Product[];
+  return {} as IndexProductResponse;
 }
 
 const show = async (id: number) => {
@@ -46,4 +46,5 @@ interface ProductResponse {
 
 interface IndexProductResponse {
   data: Product[]
+  meta: Meta
 }

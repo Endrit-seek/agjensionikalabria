@@ -29,8 +29,8 @@ class ProductResource extends JsonResource
             'furnished' => $this->furnished,
             'city_id' => $this->city_id,
             'medias' => MediaResource::collection($this->whenLoaded('medias')),
-            'created_at' => $this->created_at->diffForHumans(),
-            'updated_at' => $this->updated_at->diffForHumans(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

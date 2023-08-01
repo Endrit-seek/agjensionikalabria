@@ -50,5 +50,10 @@ export default defineNuxtConfig({
     // '/api/**': { cors: true },
     // // Redirects legacy urls
     // '/old-page': { redirect: '/new-page' }
+  },
+  vite: {
+    ssr: {
+      noExternal: ['moment']
+    }
   }
 })
