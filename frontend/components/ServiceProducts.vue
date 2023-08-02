@@ -2,7 +2,7 @@
   <div>
     <div class="col-md-9 col-sm-9 col-xs-12">
       <v-row class="mx-1">
-        <v-col v-for="pro in products" :key="pro.title" cols="4">
+        <v-col v-for="pro in products" :key="pro.title" :cols="mdAndUp ? 4 : 12">
           <v-hover v-slot="{ isHovering, props }">
             <v-card
               :elevation="isHovering ? 12 : 2"
@@ -10,7 +10,7 @@
               class="mx-auto"
               color="grey lighten-4"
               :class="{ 'on-hover': isHovering }"
-              width="420"
+              max-width="420"
               :to="'/serviset/' + pro.id"
             >
               <v-img
@@ -97,11 +97,15 @@
 </template>
 
 <script setup lang="ts">
-import moment from 'moment'
-defineProps<{
-  products: Product[]
-  cities: City[]
-}>()
+  import moment from 'moment'
+  import { useDisplay } from 'vuetify'
+  
+  const { mdAndUp } = useDisplay()
+
+  defineProps<{
+    products: Product[]
+    cities: City[]
+  }>()
 </script>
 
 <style>

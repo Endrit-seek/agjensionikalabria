@@ -2,204 +2,226 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols="3">
+        <v-col cols="12" sm="3">
           <v-sheet rounded="lg">
-            <v-list height="86vh" color="transparent">
-              <div class="d-flex justify-space-around align-center ma-2">
-                <v-chip variant="text">FILTRIMI I PRODUKTEVE</v-chip>
-                <v-chip prepend-icon="mdi-autorenew" color="red" @click.native.stop.prevent="resetFilter()">
-                  RESETO FILTRIMET
-                </v-chip>
-              </div>
-
-              <v-list-item>
-                <v-text-field
-                  v-model="filteredTitle"
-                  hide-details
-                  density="compact"
-                  variant="outlined"  
-                  class="mb-2 pt-2"
-                  label="Titulli"
-                  placeholder="Titulli i produktit"
-                  prepend-icon="mdi-format-title"
-                />
-              </v-list-item>
-
-              <v-divider />
-
-              <v-list-item>
-                  <v-autocomplete
-                    v-model="filteredCity"
-                    id="city"
-                    name="city"
-                    density="compact"
-                    placeholder="Qyteti ku gjindet produkti"
-                    class="pt-3"
-                    label="Qyteti"
-                    prepend-icon="mdi-city"
-                    variant="outlined"
-                    return-object
-                    clearable
-                    :items="cities ? 
-                      cities.map((city) => ({
-                        value: city.id,
-                        title: city.name
-                      })) : ['Nuk ka qytete te gatshme']
-                    "
+            <v-list v-model:opened="open" :height="open ? '' : '86vh'">
+              <v-list-group value="Filtrimet" fluid>
+                <template v-slot:activator="{ props }">
+                  <v-list-item
+                    v-bind="props"
+                    prepend-icon="mdi-filter-menu-outline"
+                    title="Filtrimet"
                   />
+                </template>
+                <div class="d-flex justify-space-around align-center ma-2">
+                  <v-chip variant="text">FILTRIMI I PRODUKTEVE</v-chip>
+                  <v-chip prepend-icon="mdi-autorenew" color="red" @click.native.stop.prevent="resetFilter()">
+                    RESETO
+                  </v-chip>
+                </div>
 
+                <v-list-item>
                   <v-text-field
-                    v-model="filteredAddress"
-                    prepend-icon="mdi-home-city"
+                    v-model="filteredTitle"
+                    hide-details
                     density="compact"
-                    placeholder="Lagjia ku gjindet produkti"
                     variant="outlined"  
-                    label="Lagjia"
+                    class="mb-2 pt-2"
+                    label="Titulli"
+                    placeholder="Titulli i produktit"
+                    prepend-icon="mdi-format-title"
                   />
+                </v-list-item>
 
-                  <v-text-field
-                    v-model="filteredStreet"
-                    id="street"
-                    name="street"
-                    density="compact"
-                    placeholder="Rruga ku gjindet produkti"
-                    label="Rruga"
-                    prepend-icon="mdi-road-variant"
-                    variant="outlined"
-                  />
+                <v-divider />
 
-                  <v-autocomplete
-                    v-model="filteredType"
-                    :items="llojet"
-                    prepend-icon="mdi-office-building-cog"
-                    placeholder="Lloji i produktit"
-                    density="compact"
-                    clearable
-                    variant="outlined"  
-                    label="Lloji"
-                  />
-
-                  <v-autocomplete
-                    v-model="filteredStatus"
-                    :items="statuset"
-                    prepend-icon="mdi-tag"
-                    placeholder="Statusi i produktit"
-                    density="compact"
-                    clearable
-                    variant="outlined"  
-                    label="Statusi"
-                  />
-
-                  <v-row dense>
-                    <v-col cols="6" sm="5">
-                      <v-text-field
-                        v-model="filteredMinPrice"
-                        suffix="€"
-                        prepend-icon="mdi-cash-minus"
-                        label="Vlera Min."
-                        density="compact"
-                        variant="outlined"  
-                      />
-                    </v-col>
-
-                    <v-col cols="1" sm="2">
-                      <p class="pt-2 text-center">Deri</p>
-                    </v-col>
-
-                    <v-col cols="5" sm="5">
-                      <v-text-field
-                        v-model="filteredMaxPrice"
-                        suffix="€"
-                        append-icon="mdi-cash-plus"
-                        label="Vlera Maks."
-                        density="compact"
-                        variant="outlined"  
-                      />
-                    </v-col>
-                  </v-row>
-              </v-list-item>
-
-              <v-divider />
-
-              <v-list-item class="mt-2">
-                  <v-text-field
-                    v-model="filteredSpace"
-                    type="number"
-                    class="pt-3"
-                    placeholder="Sa ka hapesire produkti"
-                    prepend-icon="mdi-texture-box"
-                    density="compact"
-                    variant="outlined"
-                    suffix="m&#178;"
-                    label="Hapesira"
-                  />
-
-                  <v-text-field
-                    v-model="filteredRoom"
-                    type="number"
-                    placeholder="Sa dhoma ka produkti"
-                    prepend-icon="mdi-bed"
-                    density="compact"
-                    variant="outlined"
-                    label="Dhoma"
-                  />
-
-                  <v-text-field
-                    v-model="filteredBath"
-                    type="number"
-                    placeholder="Sa banjo ka produkti"
-                    prepend-icon="mdi-bathtub"
-                    density="compact"
-                    variant="outlined"
-                    label="Banjo"
-                  />
-
-                  <div style="height: 40px" class="d-flex justify-start align-top">
-                    <v-icon
-                      icon="mdi-sofa"
-                      class="mr-5 mt-2"
-                      style="color: rgb(149, 149, 149)"
+                <v-list-item>
+                    <v-autocomplete
+                      v-model="filteredCity"
+                      id="city"
+                      name="city"
+                      density="compact"
+                      placeholder="Qyteti ku gjindet produkti"
+                      class="pt-3"
+                      label="Qyteti"
+                      prepend-icon="mdi-city"
+                      variant="outlined"
+                      return-object
+                      clearable
+                      :items="
+                        cities.map((city) => ({
+                          value: city.id,
+                          title: city.name
+                        }))
+                      "
                     />
 
-                    <div class="mt-2 mr-2">E Mobiluar?</div>
+                    <v-text-field
+                      v-model="filteredAddress"
+                      prepend-icon="mdi-home-city"
+                      density="compact"
+                      placeholder="Lagjia ku gjindet produkti"
+                      variant="outlined"  
+                      label="Lagjia"
+                    />
 
-                    <v-radio-group v-model="filteredFurnished" class="justify-start align-top" inline>
-                      <v-radio label="Po" key="1" value="1" @click.native.stop.prevent="resetGroup('1')" />
-                      <v-radio label="Jo" key="0" value="0" @click.native.stop.prevent="resetGroup('0')" />
-                    </v-radio-group>
-                  </div>
-              </v-list-item>
+                    <v-text-field
+                      v-model="filteredStreet"
+                      id="street"
+                      name="street"
+                      density="compact"
+                      placeholder="Rruga ku gjindet produkti"
+                      label="Rruga"
+                      prepend-icon="mdi-road-variant"
+                      variant="outlined"
+                    />
+
+                    <v-autocomplete
+                      v-model="filteredType"
+                      :items="llojet"
+                      prepend-icon="mdi-office-building-cog"
+                      placeholder="Lloji i produktit"
+                      density="compact"
+                      clearable
+                      variant="outlined"  
+                      label="Lloji"
+                    />
+
+                    <v-autocomplete
+                      v-model="filteredStatus"
+                      :items="statuset"
+                      prepend-icon="mdi-tag"
+                      placeholder="Statusi i produktit"
+                      density="compact"
+                      clearable
+                      variant="outlined"  
+                      label="Statusi"
+                    />
+
+                    <v-row dense>
+                      <v-col :cols="mdAndUp ? '5' : '12'">
+                        <v-text-field
+                          v-model="filteredMinPrice"
+                          suffix="€"
+                          prepend-icon="mdi-cash-minus"
+                          label="Vlera min"
+                          density="compact"
+                          variant="outlined"  
+                        />
+                      </v-col>
+
+                      <v-col :cols="mdAndUp ? '2' : '12'">
+                        <p v-if="mdAndUp" class="pt-2 text-center">Deri</p>
+                      </v-col>
+
+                      <v-col :cols="mdAndUp ? '5' : '12'">
+                        <v-text-field
+                          v-model="filteredMaxPrice"
+                          suffix="€"
+                          :append-icon="mdAndUp ? 'mdi-cash-plus' : ''"
+                          :prepend-icon="mdAndUp ? '' : 'mdi-cash-plus'"
+                          label="Vlera maks"
+                          density="compact"
+                          variant="outlined"  
+                        />
+                      </v-col>
+                    </v-row>
+                </v-list-item>
+
+                <v-divider />
+
+                <v-list-item class="mt-2">
+                    <v-text-field
+                      v-model="filteredSpace"
+                      type="number"
+                      class="pt-3"
+                      placeholder="Sa ka hapesire produkti"
+                      prepend-icon="mdi-texture-box"
+                      density="compact"
+                      variant="outlined"
+                      suffix="m&#178;"
+                      label="Hapesira"
+                    />
+
+                    <v-text-field
+                      v-model="filteredRoom"
+                      type="number"
+                      placeholder="Sa dhoma ka produkti"
+                      prepend-icon="mdi-bed"
+                      density="compact"
+                      variant="outlined"
+                      label="Dhoma"
+                    />
+
+                    <v-text-field
+                      v-model="filteredBath"
+                      type="number"
+                      placeholder="Sa banjo ka produkti"
+                      prepend-icon="mdi-bathtub"
+                      density="compact"
+                      variant="outlined"
+                      label="Banjo"
+                    />
+
+                    <div style="height: 40px" class="d-flex justify-start align-top">
+                      <v-icon
+                        icon="mdi-sofa"
+                        class="mr-5 mt-2"
+                        style="color: rgb(149, 149, 149)"
+                      />
+
+                      <div class="mt-2 mr-2">E Mobiluar?</div>
+
+                      <v-radio-group v-model="filteredFurnished" class="justify-start align-top" inline>
+                        <v-radio label="Po" key="1" value="1" @click.native.stop.prevent="resetGroup('1')" />
+                        <v-radio label="Jo" key="0" value="0" @click.native.stop.prevent="resetGroup('0')" />
+                      </v-radio-group>
+                    </div>
+                </v-list-item>
+              </v-list-group>
             </v-list>
           </v-sheet>
         </v-col>
 
-        <v-col>
-          <v-sheet min-height="70vh" rounded="lg" class="pt-5">
-            <div v-if="filteredProducts && filteredProducts.length > 0">
-              <div>
-                Sorto Produktet permes
-                <v-btn
-                  :append-icon="sortPrice ? 'fa:fas fa-arrow-down-9-1 fa-sm' : 'fa:fas fa-arrow-down-1-9 fa-sm'"
-                  @click="sortByPrice()"
-                >
-                  Qmimit
-                </v-btn>
-                <v-btn
-                  :append-icon="sortDate ? 'mdi-sort-calendar-ascending' : 'mdi-sort-calendar-descending'"
-                  @click="sortByDate()"
-                >
-                  Dates se krijuar
-                </v-btn>
-              </div>
-              <ServiceProducts :products="filteredProducts" :cities="cities"/>
+        <v-col cols="12" sm="9">
+          <v-sheet min-height="auto" height="100%" rounded="lg" class="pt-5">
+            <v-row style="height: 70vh;" class="d-flex justify-center align-center" v-if="filteredProducts && filteredProducts.length > 0">
+              <v-col cols="12">
+                <v-row no-guttersclass="align-center">
+                  <v-col :cols="mdAndUp ? 2 : 3" class="d-flex justify-end align-center">
+                    {{ mdAndUp ? 'Rradhit Produktet permes' : 'Rradhit:'}}
+                  </v-col>
+                  <v-col :cols="mdAndUp ? 2 : 4" class="d-flex justify-center align-center">
+                    <v-btn
+                      :append-icon="sortPrice ? 'fa:fas fa-arrow-down-9-1 fa-sm' : 'fa:fas fa-arrow-down-1-9 fa-sm'"
+                      @click="sortByPrice()"
+                    >
+                      Qmimit
+                    </v-btn>
+                  </v-col>
+                  <v-col :cols="mdAndUp ? 0 : 4">
+                    <v-btn
+                      :append-icon="sortDate ? 'mdi-sort-calendar-ascending' : 'mdi-sort-calendar-descending'"
+                      @click="sortByDate()"
+                    >
+                      {{ mdAndUp ? 'Dates se krijuar' : 'Dates'}}
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col cols="12">
+                <ServiceProducts :products="filteredProducts" :cities="cities"/>
+              </v-col>
 
-              <div class="text-center mt-12">
-                <v-pagination v-model="productStore.page" :length="productStore.meta.last_page" @update:model-value="updatePage"></v-pagination>
-              </div>
-            </div>
+              <v-col cols="12">
+                <div class="text-center mt-12">
+                  <v-pagination v-model="productStore.page" :length="productStore.meta.last_page" @update:model-value="updatePage"></v-pagination>
+                </div>
+              </v-col>
+            </v-row>
 
-            <div v-else>
-              Nuk ka produkte
+            <div v-else style="height: 70vh;" class="d-flex justify-center align-center">
+              <v-icon class="pr-7" icon="mdi-emoticon-sad-outline" size="70"/><h1>Nuk ka produkte</h1>
             </div>
           </v-sheet>
         </v-col>
@@ -210,6 +232,10 @@
 
 <script setup lang="ts">
   import moment from 'moment';
+  import { useDisplay } from 'vuetify'
+  
+  const { mdAndUp } = useDisplay()
+  const open = ref<Array<string>>([mdAndUp ? 'Filtrimet' : ''])
 
   const productStore = useProductStore()
   const { cities } = useCityStore()

@@ -3,10 +3,6 @@ export const useCityStore = defineStore('city', {
     cities: [] as City[]
   }),
 
-  getters: {
-
-  },
-
   actions: {
     async fetchCities() {
       const { index } = useCity()

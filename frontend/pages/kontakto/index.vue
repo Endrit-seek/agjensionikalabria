@@ -6,15 +6,17 @@
     <p class="d-flex text-h3 mt-3 text-pink fill-height align-center justify-center">
       <strong>Rreth nesh</strong>
     </p>
-    <p class="d-flex mt-4 ml-12 fill-height text-h4">
+    <p class="d-flex mt-4 ml-12 fill-height text-h5">
       Agjensioni i patundshmërisë - KALABRIA
     </p>
     <p class="d-flex mt-4 ml-12 fill-height">
       <strong>
         Agjensioni i patundshmërisë Kalabria ofron shërbimin e ndërmjetësimit në shit-blerje dhe
-        qera-dhënie të patundshmërive. Shitblerje / Qeradhënie / Qeramarrje Banesa / Shtëpi / Lokale
-        / Troje
+        qera-dhënie të patundshmërive. 
         <br />
+        <br />
+        Shitblerje / Qeradhënie / Qeramarrje Banesa / Shtëpi / Lokale
+        / Troje
       </strong>
     </p>
     <p class="d-flex mt-4 ml-12 fill-height text-h4">Detajet e kontaktit</p>

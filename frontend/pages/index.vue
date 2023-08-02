@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-carousel cycle height="700" show-arrows hide-delimiter-background>
+  <div>
+    <v-carousel :hide-delimiters="mdAndUp ? false : true" cycle :height="mdAndUp ? '700' : '300'" show-arrows="hover" hide-delimiter-background>
       <template #prev="{ props }">
         <v-btn class="ma-2" variant="text" icon="mdi-chevron-left" @click="props.onClick" />
       </template>
@@ -9,9 +9,9 @@
       </template>
       <v-carousel-item v-for="(slide, i) in slides" :key="i" :src="slide.src" cover />
     </v-carousel>
-    <v-sheet style="margin: 0% 15% 0% 15%; padding: 0% 1% 0% 1%">
+    <v-sheet :style="mdAndUp ? 'margin: 0% 15% 0% 15%; padding: 0% 1% 0% 1%' : ''">
       <v-timeline truncate-line="end">
-        <v-timeline-item v-for="(item, i) in items" :key="i">
+        <v-timeline-item :size="mdAndUp ? 'x-small' : ''" v-for="(item, i) in items" :key="i">
           <template #opposite>
             <v-img :src="item.image" />
           </template>
@@ -22,10 +22,23 @@
         </v-timeline-item>
       </v-timeline>
     </v-sheet>
-  </v-app>
+  </div>
 </template>
 
 <script setup>
+  import { useDisplay } from 'vuetify'
+  
+  const { mdAndUp } = useDisplay()
+  const auth = useAuthStore()
+  const products = useProductStore()
+  const cities = useCityStore()
+
+  onMounted(async () => {
+    await auth.fetchUser()
+    await products.fetchProducts()
+    await cities.fetchCities()
+  });
+
   const slides = [
     {
       src: '/img/C1.jpg',

@@ -14,7 +14,7 @@ const show = async (id: number) => {
   if (data.value && data.value.data) {
     return data.value.data;
   }
-  return [] as Product[];
+  return {} as Product;
 }
 
 const store = async (body: any) => {

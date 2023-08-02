@@ -5,10 +5,6 @@ export const useProductStore = defineStore('product', {
     page: 1
   }),
 
-  getters: {
-
-  },
-
   actions: {
     async fetchProducts(page?: number) {
       const { index } = useProduct()
