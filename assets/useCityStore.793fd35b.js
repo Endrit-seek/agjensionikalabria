@@ -1,0 +1,1 @@
+import{s,P as e}from"./entry.85d85229.js";import{a as i}from"./useCity.5eab8d5a.js";const r=s("city",{state:()=>({cities:[]}),actions:{async fetchCities(){const{index:t}=i();this.cities=await t()}},persist:{storage:e.localStorage}});export{r as u};
