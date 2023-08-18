@@ -1,1 +1,0 @@
-import{s as a,O as e}from"./entry.be546a25.js";import{u as o}from"./useCity.1a140a99.js";const i=a("product",{state:()=>({products:[],meta:{},page:1}),actions:{async fetchProducts(t){const{index:s}=o();this.products=(await s(t)).data,this.meta=(await s(t)).meta}},persist:{storage:e.localStorage}});export{i as u};
