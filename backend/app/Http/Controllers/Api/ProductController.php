@@ -24,15 +24,16 @@ class ProductController extends Controller
         // dd($request);
         $product = Product::create($request->validated());
         $files = $request->medias;
-        foreach($files as $media) {
-            if($dir = TemporaryMedia::where('directory', $media)->first()) {
-                Storage::makeDirectory('public/images/' . $product->id);
-                // Move temporary medias to storage
+        if($files) {
+            foreach($files as $media) {
+                if($dir = TemporaryMedia::where('directory', $media)->first()) {
+                    Storage::makeDirectory('public/images/' . $product->id);
+                    // Move temporary medias to storage
                 Storage::move(
                     'public/images/tmp/' . $dir->directory . '/' . $dir->name,
                     'public/images/' . $product->id . '/' . $dir->name
                 );
-                
+
                 // Save the medias to the database
                 Media::create([
                     'name' => $dir->name,
@@ -44,7 +45,8 @@ class ProductController extends Controller
                 $dir->delete();
                 Storage::deleteDirectory('public/images/tmp/' . $dir->directory);
             }
-        }  
+            }
+        }
         return new ProductResource($product);
     }
 
