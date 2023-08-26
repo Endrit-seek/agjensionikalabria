@@ -27,11 +27,12 @@
 
 <script setup>
   import { useDisplay } from 'vuetify'
-  
+
   const { mdAndUp } = useDisplay()
   const auth = useAuthStore()
   const products = useProductStore()
   const cities = useCityStore()
+  const config = useRuntimeConfig()
 
   onMounted(async () => {
     await auth.fetchUser()

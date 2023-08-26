@@ -12,7 +12,7 @@
     <p class="d-flex mt-4 ml-12 fill-height">
       <strong>
         Agjensioni i patundshmërisë Kalabria ofron shërbimin e ndërmjetësimit në shit-blerje dhe
-        qera-dhënie të patundshmërive. 
+        qera-dhënie të patundshmërive.
         <br />
         <br />
         Shitblerje / Qeradhënie / Qeramarrje Banesa / Shtëpi / Lokale

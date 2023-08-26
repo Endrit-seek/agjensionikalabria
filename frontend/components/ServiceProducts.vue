@@ -52,7 +52,7 @@
                       Rruga: {{ pro.street }}
                     </div>
                     <div>
-                      <v-icon icon="mdi-calendar-range" /> 
+                      <v-icon icon="mdi-calendar-range" />
                       Data e Krijuar: {{ moment(pro.created_at).format("DD-MM-YYYY HH:mm:ss") }}
                     </div>
                   </v-col>
@@ -62,7 +62,7 @@
                     </v-chip>
                   </v-col>
                 </v-row>
-                
+
               </v-card-text>
 
               <v-divider />
@@ -99,7 +99,7 @@
 <script setup lang="ts">
   import moment from 'moment'
   import { useDisplay } from 'vuetify'
-  
+
   const { mdAndUp } = useDisplay()
 
   defineProps<{

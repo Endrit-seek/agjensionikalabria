@@ -17,7 +17,7 @@
                 <v-col  cols="12" md="4">
                   <v-text-field
                     v-model="title.value.value"
-                    :error-messages="title.errorMessage.value || errors.$state.errors.title"
+                    :error-messages="title.errorMessage.value"
                     id="title"
                     name="title"
                     density="compact"
@@ -30,7 +30,7 @@
                 <v-col  cols="12" md="4">
                   <v-text-field
                     v-model="description.value.value"
-                    :error-messages="description.errorMessage.value || errors.$state.errors.description"
+                    :error-messages="description.errorMessage.value"
                     id="description"
                     name="description"
                     density="compact"
@@ -43,7 +43,7 @@
                 <v-col  cols="12" md="4">
                   <v-autocomplete
                     v-model="(type.value.value as string)"
-                    :error-messages="type.errorMessage.value || errors.$state.errors.type"
+                    :error-messages="type.errorMessage.value"
                     id="type"
                     :items="llojet"
                     name="type"
@@ -57,7 +57,7 @@
                 <v-col  cols="12" md="4">
                   <v-autocomplete
                     v-model="(status.value.value as string)"
-                    :error-messages="status.errorMessage.value || errors.$state.errors.status"
+                    :error-messages="status.errorMessage.value"
                     id="status"
                     name="status"
                     :items="statuset"
@@ -71,7 +71,7 @@
                 <v-col  cols="12" md="4">
                   <v-text-field
                     v-model="price.value.value"
-                    :error-messages="price.errorMessage.value || errors.$state.errors.price"
+                    :error-messages="price.errorMessage.value"
                     id="price"
                     name="price"
                     density="compact"
@@ -87,14 +87,14 @@
                   <v-autocomplete
                     v-if="cities"
                     v-model="city.value.value"
-                    :error-messages="city.errorMessage.value || errors.$state.errors.city"
+                    :error-messages="city.errorMessage.value"
                     id="city"
                     name="city"
                     density="compact"
                     placeholder="Qyteti ku gjindet produkti"
                     label="Qyteti"
                     prepend-icon="mdi-city"
-                    variant="outlined"  
+                    variant="outlined"
                     clearable
                     :items="cities.map((city) => ({
                       value: city.id,
@@ -105,7 +105,7 @@
                 <v-col  cols="12" md="4">
                   <v-text-field
                     v-model="address.value.value"
-                    :error-messages="address.errorMessage.value || errors.$state.errors.address"
+                    :error-messages="address.errorMessage.value"
                     id="address"
                     name="address"
                     density="compact"
@@ -118,7 +118,7 @@
                 <v-col  cols="12" md="4">
                   <v-text-field
                     v-model="street.value.value"
-                    :error-messages="street.errorMessage.value || errors.$state.errors.street"
+                    :error-messages="street.errorMessage.value"
                     id="street"
                     name="street"
                     density="compact"
@@ -133,7 +133,7 @@
                 <v-col  cols="12" md="4">
                   <v-text-field
                     v-model="space.value.value"
-                    :error-messages="space.errorMessage.value || errors.$state.errors.space"
+                    :error-messages="space.errorMessage.value"
                     id="space"
                     type="number"
                     name="space"
@@ -147,7 +147,7 @@
                 <v-col  cols="12" md="4">
                   <v-text-field
                     v-model="room.value.value"
-                    :error-messages="room.errorMessage.value || errors.$state.errors.room"
+                    :error-messages="room.errorMessage.value"
                     id="room"
                     name="room"
                     type="number"
@@ -161,7 +161,7 @@
                 <v-col  cols="12" md="4">
                   <v-text-field
                     v-model="bath.value.value"
-                    :error-messages="bath.errorMessage.value || errors.$state.errors.bath"
+                    :error-messages="bath.errorMessage.value"
                     id="bath"
                     type="number"
                     name="bath"
@@ -176,7 +176,7 @@
               <v-row>
                 <v-col  cols="12" md="4">
                   <v-radio-group  v-model="furnished.value.value"
-                    :error-messages="furnished.errorMessage.value || errors.$state.errors.furnished"
+                    :error-messages="furnished.errorMessage.value"
                     id="furnished"
                     name="furnished"
                     density="compact"
@@ -283,7 +283,7 @@
       },
     }
   })
-  
+
 
   const images = ref<Array<string>>([]);
   const title = useField('title');

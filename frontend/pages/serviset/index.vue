@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols="12" sm="3">
+        <v-col cols="12" sm="4">
           <v-sheet rounded="lg">
             <v-list v-model:opened="open" :height="open ? '' : '86vh'">
               <v-list-group value="Filtrimet" fluid>
@@ -25,7 +25,7 @@
                     v-model="filteredTitle"
                     hide-details
                     density="compact"
-                    variant="outlined"  
+                    variant="outlined"
                     class="mb-2 pt-2"
                     label="Titulli"
                     placeholder="Titulli i produktit"
@@ -61,7 +61,7 @@
                       prepend-icon="mdi-home-city"
                       density="compact"
                       placeholder="Lagjia ku gjindet produkti"
-                      variant="outlined"  
+                      variant="outlined"
                       label="Lagjia"
                     />
 
@@ -83,7 +83,7 @@
                       placeholder="Lloji i produktit"
                       density="compact"
                       clearable
-                      variant="outlined"  
+                      variant="outlined"
                       label="Lloji"
                     />
 
@@ -94,7 +94,7 @@
                       placeholder="Statusi i produktit"
                       density="compact"
                       clearable
-                      variant="outlined"  
+                      variant="outlined"
                       label="Statusi"
                     />
 
@@ -106,7 +106,7 @@
                           prepend-icon="mdi-cash-minus"
                           label="Vlera min"
                           density="compact"
-                          variant="outlined"  
+                          variant="outlined"
                         />
                       </v-col>
 
@@ -122,7 +122,7 @@
                           :prepend-icon="mdAndUp ? '' : 'mdi-cash-plus'"
                           label="Vlera maks"
                           density="compact"
-                          variant="outlined"  
+                          variant="outlined"
                         />
                       </v-col>
                     </v-row>
@@ -183,7 +183,7 @@
           </v-sheet>
         </v-col>
 
-        <v-col cols="12" sm="9">
+        <v-col cols="12" sm="8">
           <v-sheet min-height="auto" height="100%" rounded="lg" class="pt-5">
             <v-row style="height: 70vh;" class="d-flex justify-center align-center" v-if="filteredProducts && filteredProducts.length > 0">
               <v-col cols="12">
@@ -220,9 +220,9 @@
               </v-col>
             </v-row>
 
-            <div v-else style="height: 70vh;" class="d-flex justify-center align-center">
+            <v-row v-if="!filteredProducts" style="height: 70vh;" class="d-flex justify-center align-center">
               <v-icon class="pr-7" icon="mdi-emoticon-sad-outline" size="70"/><h1>Nuk ka produkte</h1>
-            </div>
+            </v-row>
           </v-sheet>
         </v-col>
       </v-row>
@@ -233,7 +233,7 @@
 <script setup lang="ts">
   import moment from 'moment';
   import { useDisplay } from 'vuetify'
-  
+
   const { mdAndUp } = useDisplay()
   const open = ref<Array<string>>([mdAndUp ? 'Filtrimet' : ''])
 
@@ -254,11 +254,11 @@
   const filteredFurnished = ref<string>();
   const tempFurnished = ref<string>();
 
-  // true: Qmimi me I larte tek me I ulet, Data me e hershme tek me e vonshme 
+  // true: Qmimi me I larte tek me I ulet, Data me e hershme tek me e vonshme
   // false: Qmimi me I ulet tek me I larte, Data me e vonshme tek me e hershme
   const sortPrice = ref<boolean | undefined>(undefined)
   const sortDate = ref<boolean | undefined>(undefined)
-  
+
   const statuset = ['Me Qera', 'Per Shitje'];
   const llojet = ['Banese', 'Shtepi', 'Zyre', 'Toke', 'Shtepi'];
   const valueRange = ref([0, 1000000]);
@@ -401,4 +401,3 @@
     -moz-appearance: textfield;
   }
 </style>
- 
